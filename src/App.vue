@@ -19,8 +19,5 @@ export default {
 #app {
   font-family: "Anton SC", sans-serif;
   font-weight: 400;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
