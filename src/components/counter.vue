@@ -2,8 +2,9 @@
     <div class="container">
         <h1 id="title">Vue Counter</h1>
         <p id="counter">{{ count }}</p>
-        <button @click="increment">Increment</button>
-        <button @click="decrement">Decrement</button>
+        <button class="btn btn-primary btn-dark" @click="increment">Increment</button>
+        <button class="btn btn-primary btn-dark" @click="reset">Reset</button>
+        <button class="btn btn-primary btn-dark" @click="decrement">Decrement</button>
     </div>
 </template>
 
@@ -12,21 +13,35 @@
         name: 'Counter',
         data() {
             return {
-                count: 0
+                count: parseInt(localStorage.getItem('count')) || 0
             }
         },
         methods: {
             increment() {
-                this.count++
+                this.count++;
+                this.storeCounterSetting();
             },
             decrement() {
-                this.count--
-            }
-        }
+                this.count--;
+                this.storeCounterSetting();
+            },
+            reset () {
+                this.count = 0;
+                this.storeCounterSetting();
+            },
+            storeCounterSetting () {
+                localStorage.setItem('count', this.count);
+            },
+        },
     }
 </script>
 
 <style scoped>
+button {
+    font-size: 1.3rem;
+    margin: 1rem;
+}
+
 #title {
     font-size: 5rem;
     color: black;
